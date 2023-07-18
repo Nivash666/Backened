@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ibo@y3m@9log_5$)8i(szjna%1_exo#5#l=ft^$&2bnn%qu^j)"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower()=="true"
 
-ALLOWED_HOSTS = ['po4nwvbvwh.execute-api.us-east-1.amazonaws.com','127.0.0.1', 'localhost']
+ALLOWED_HOSTS =os.environ.get("ALLOWED_HOSTS").split(" ") 
+#['po4nwvbvwh.execute-api.us-east-1.amazonaws.com','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -77,7 +79,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
 COGNITO_AWS_REGION='us-east-1'
-ROOT_URLCONF = "Backened_Django.urls"
+ROOT_URLCONF = "Severless.urls"
 
 TEMPLATES = [
     {
@@ -95,29 +97,32 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "Backened_Django.wsgi.application"
+WSGI_APPLICATION = "Severless.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-#}
 DATABASES = {
     "default": {
-        "ENGINE": "mysql.connector.django",
-        "NAME": "Djangords",
-        "USER": "rootuser",
-        "PASSWORD": "nivash2001",
-        "HOST": "database-1.cbk41eocew1t.us-east-1.rds.amazonaws.com",
-        "PORT": "3306",
-        
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+database_url=os.environ.get("DATABASE_URL")
+DATABASES["default"]=dj_database_url.parse(database_url)
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.mysql",
+#        "NAME": "Railway",
+#        "USER": "root",
+#        "PASSWORD": "bLBFspFztpTZi5fRoFyF",
+#        "HOST": "containers-us-west-181.railway.app",
+#        "PORT": "6976",
+#        
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
