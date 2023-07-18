@@ -1,0 +1,802 @@
+[
+{
+  "model": "app_1.shirts",
+  "pk": 1,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kzd147k0/shirt/o/6/i/m-khsh000535-ketch-original-imagbe4ftrmtw2mg.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Casual Shirt",
+    "discount_price": "389",
+    "orginal_price": "999",
+    "discount": "61% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_juk4SgU.jpg",
+    "day": "Monday",
+    "date": 6,
+    "users": "4053",
+    "int_discount_price": 389,
+    "int_orginal_price": 999,
+    "fashion_model": "KETCH",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 2,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l0cr4i80/shirt/z/2/u/s-sh-68-getchi-original-imagc5xphwqw6fgj.jpeg?q=70",
+    "head": "Men Regular Fit Solid Spread Collar Formal Shirt",
+    "discount_price": "449",
+    "orginal_price": "899",
+    "discount": "50% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_pvCdpmv.jpg",
+    "day": "Saturday",
+    "date": 19,
+    "users": "2090",
+    "int_discount_price": 449,
+    "int_orginal_price": 899,
+    "fashion_model": "GETCHI",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 3,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kxdl3m80/shirt/a/7/a/l-ts-shirt1083-tanip-original-imag9ugfzkdhprzn.jpeg?q=70",
+    "head": "Men Slim Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,399",
+    "discount": "71% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_WN819o0.jpg",
+    "day": "Friday",
+    "date": 19,
+    "users": "58875",
+    "int_discount_price": 399,
+    "int_orginal_price": 1399,
+    "fashion_model": "Tanip",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 4,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kflftzk0-0/shirt/9/7/d/s-hlsh011408-highlander-original-imafwyf39jx3kfcc.jpeg?q=70",
+    "head": "Men Slim Fit Solid Cut Away Collar Casual Shirt",
+    "discount_price": "493",
+    "orginal_price": "1,299",
+    "discount": "62% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_WSphwUw.jpg",
+    "day": "Tuesday",
+    "date": 7,
+    "users": "9217",
+    "int_discount_price": 493,
+    "int_orginal_price": 1299,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 5,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/5/f/u/s-p1-sht-hood-geographical-plus91-original-imag4dvycrmpz22p-bb.jpeg?q=70",
+    "head": "Men Slim Fit Graphic Print Hood Collar Casual Shirt",
+    "discount_price": "379",
+    "orginal_price": "1,499",
+    "discount": "74% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_iMno64J.jpg",
+    "day": "Monday",
+    "date": 17,
+    "users": "3145",
+    "int_discount_price": 379,
+    "int_orginal_price": 1499,
+    "fashion_model": "Plus91",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 6,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/p/d/k/xl-bss-try-this-original-imafvvae4ghhy5pd-bb.jpeg?q=70",
+    "head": "Men Slim Fit Color Block Spread Collar Casual Shirt",
+    "discount_price": "319",
+    "orginal_price": "999",
+    "discount": "68% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_m0nmpFN.jpg",
+    "day": "Monday",
+    "date": 24,
+    "users": "1159",
+    "int_discount_price": 319,
+    "int_orginal_price": 999,
+    "fashion_model": "Try This",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 7,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l4oi4cw0/shirt/a/3/9/xl-4000-combraided-original-imagfgzguwfuryw9.jpeg?q=70",
+    "head": "Men Regular Fit Striped Casual Shirt",
+    "discount_price": "299",
+    "orginal_price": "1,499",
+    "discount": "80% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_P4i0V8E.jpg",
+    "day": "Saturday",
+    "date": 25,
+    "users": "2346",
+    "int_discount_price": 299,
+    "int_orginal_price": 1499,
+    "fashion_model": "COMBRAIDED",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 8,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kvlaaa80/shirt/y/y/n/l-khsh000333-ketch-original-imag8gmyytdxzeng.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Casual Shirt",
+    "discount_price": "385",
+    "orginal_price": "899",
+    "discount": "57% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_asCXkjR.jpg",
+    "day": "Thursday",
+    "date": 7,
+    "users": "31775",
+    "int_discount_price": 385,
+    "int_orginal_price": 899,
+    "fashion_model": "KETCH",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 9,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/m/o/w/m-kcsh-110-bk-fubar-original-imagk3dnujyctse8.jpeg?q=70",
+    "head": "Men Slim Fit Solid Mandarin Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "999",
+    "discount": "60% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_60DrRJP.jpg",
+    "day": "Monday",
+    "date": 14,
+    "users": "2367",
+    "int_discount_price": 399,
+    "int_orginal_price": 999,
+    "fashion_model": "FUBAR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 10,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kovsvbk0/shirt/b/q/t/s-ts-shirt1029-tanip-original-imag38a3fen3wmv7.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Spread Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,399",
+    "discount": "71% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407880_lEnsjHgZh970gQ0UYA2dGY29UmXVoorP.jpg",
+    "day": "Thursday",
+    "date": 27,
+    "users": "3214",
+    "int_discount_price": 399,
+    "int_orginal_price": 1399,
+    "fashion_model": "Tanip",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 11,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/k6fd47k0/shirt/9/f/5/xl-c415-tealblue-dennis-lingo-original-imafzvvrxzt8tpar.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Slim Collar Casual Shirt",
+    "discount_price": "499",
+    "orginal_price": "2,499",
+    "discount": "80% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_IoJVQ1u.jpg",
+    "day": "Thursday",
+    "date": 4,
+    "users": "5436",
+    "int_discount_price": 499,
+    "int_orginal_price": 2499,
+    "fashion_model": "Dennis Lingo",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 12,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/e/h/8/2xl-collor-2-aidan-paul-original-imagc3gunm3daexn-bb.jpeg?q=70",
+    "head": "Men Regular Fit Solid Cut Away Collar Casual Shirt",
+    "discount_price": "471",
+    "orginal_price": "1,999",
+    "discount": "76% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_l8GqXbk.jpg",
+    "day": "Wednesday",
+    "date": 3,
+    "users": "2356",
+    "int_discount_price": 471,
+    "int_orginal_price": 1999,
+    "fashion_model": "AIDAN PAUL",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 13,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/m/z/e/l-ts-shirt1028-tanip-original-imag377shbjqn8cp-bb.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Spread Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,399",
+    "discount": "71% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_sfmnFNS.jpg",
+    "day": "Tuesday",
+    "date": 19,
+    "users": "5436",
+    "int_discount_price": 399,
+    "int_orginal_price": 1399,
+    "fashion_model": "Tanip",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 14,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kxz0pe80/shirt/1/0/e/m-st325mn-majestic-man-original-imagab8fqy2qshj5.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Casual Shirt",
+    "discount_price": "449",
+    "orginal_price": "1,499",
+    "discount": "70% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_AD37l7u.jpg",
+    "day": "Friday",
+    "date": 3,
+    "users": "2865",
+    "int_discount_price": 449,
+    "int_orginal_price": 1499,
+    "fashion_model": "Majestic Man",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 15,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/h/g/v/l-fo-shrt-499-cmnt-5th-anfold-original-imafkhgxzg9dfmwk-bb.jpeg?q=70",
+    "head": "Men Slim Fit Solid Formal Shirt",
+    "discount_price": "449",
+    "orginal_price": "1,199",
+    "discount": "62% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_cK5TK8J.jpg",
+    "day": "Monday",
+    "date": 13,
+    "users": "2456",
+    "int_discount_price": 449,
+    "int_orginal_price": 1199,
+    "fashion_model": "5TH ANFOLD",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 16,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l0y6qa80/shirt/k/m/h/l-st128gy-majestic-man-original-imagcmz4qnhrskz3.jpeg?q=70",
+    "head": "Men Slim Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "449",
+    "orginal_price": "1,499",
+    "discount": "70% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_s7zjq57.jpg",
+    "day": "Wednesday",
+    "date": 10,
+    "users": "3452",
+    "int_discount_price": 449,
+    "int_orginal_price": 1499,
+    "fashion_model": "Majestic Man",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 17,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l3os4280/shirt/f/8/x/xl-men-slim-fit-printed-spread-collar-casual-shirt-icome-original-imageqvkcjrvgmyb.jpeg?q=70",
+    "head": "Men Regular Fit Printed Cut Away Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "799",
+    "discount": "50% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_TuZPXWb.jpg",
+    "day": "Friday",
+    "date": 24,
+    "users": "23841",
+    "int_discount_price": 399,
+    "int_orginal_price": 799,
+    "fashion_model": "icome",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 18,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/1/k/m/xxl-sh-white-line-u-turn-original-imagf4x64qkg9wzk-bb.jpeg?q=70",
+    "head": "Men Slim Fit Striped Spread Collar Casual Shirt",
+    "discount_price": "389",
+    "orginal_price": "1,899",
+    "discount": "79% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_4jNNuUN.jpg",
+    "day": "Tuesday",
+    "date": 2,
+    "users": "1086",
+    "int_discount_price": 389,
+    "int_orginal_price": 1899,
+    "fashion_model": "U TURN",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 19,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l30hmkw0/shirt/t/k/f/l-check1195-tanip-original-image85ed7ezb29q.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Spread Collar Casual Shirt",
+    "discount_price": "279",
+    "orginal_price": "1,399",
+    "discount": "80% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_F7ex4tK.jpg",
+    "day": "Monday",
+    "date": 7,
+    "users": "3456",
+    "int_discount_price": 279,
+    "int_orginal_price": 1399,
+    "fashion_model": "Tanip",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 20,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kfoapow0-0/shirt/o/u/a/s-hlsh009608-highlander-original-imafw2gpbs5rcgzm.jpeg?q=70",
+    "head": "Men Slim Fit Solid Casual Shirt",
+    "discount_price": "571",
+    "orginal_price": "1,299",
+    "discount": "56% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_AUH97SQ.jpg",
+    "day": "Thursday",
+    "date": 18,
+    "users": "1065",
+    "int_discount_price": 571,
+    "int_orginal_price": 1299,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 21,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l1jmc280/shirt/i/x/p/xl-st2-vebnor-original-imagd2ym7cbtqrjw.jpeg?q=70",
+    "head": "Men Regular Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": true,
+    "rating_img": "pics",
+    "day": "Sunday",
+    "date": 4,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 22,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/t/k/p/l-tblshirtful-sh29-tripr-original-imagdwffvyshhxgq-bb.jpeg?q=70",
+    "head": "Men Regular Fit Printed Spread Collar Casual Shirt",
+    "discount_price": "359",
+    "orginal_price": "1,999",
+    "discount": "82% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_juk4SgU.jpg",
+    "day": "Monday",
+    "date": 10,
+    "users": "10",
+    "int_discount_price": 359,
+    "int_orginal_price": 1999,
+    "fashion_model": "TRIPR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 23,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/ktd9mkw0/shirt/m/q/x/xxl-frml-st2-vebnor-original-imag6qduuh3efv3w.jpeg?q=70",
+    "head": "Men Regular Fit Solid Button Down Collar Formal Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_pvCdpmv.jpg",
+    "day": "Thursday",
+    "date": 24,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 24,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/u/j/9/m-khsh000938-ketch-original-imagg9n7nchfb48x.jpeg?q=70",
+    "head": "Men Slim Fit Printed Cut Away Collar Casual Shirt",
+    "discount_price": "537",
+    "orginal_price": "1,249",
+    "discount": "57% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_WN819o0.jpg",
+    "day": "Monday",
+    "date": 1,
+    "users": "10",
+    "int_discount_price": 537,
+    "int_orginal_price": 1249,
+    "fashion_model": "KETCH",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 25,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kst9gnk0/shirt/r/s/t/xxl-frml-st2-vebnor-original-imag6at4hgjrvyun.jpeg?q=70",
+    "head": "Men Regular Fit Solid Button Down Collar Formal Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_WSphwUw.jpg",
+    "day": "Monday",
+    "date": 28,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 26,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/n/7/a/s-st2-vebnor-original-imagyhynxeezqumw-bb.jpeg?q=70",
+    "head": "Men Regular Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_iMno64J.jpg",
+    "day": "Sunday",
+    "date": 15,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 27,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/ku4ezrk0/shirt/l/f/v/s-frml-st2-vebnor-original-imag7bdy3puffdpz.jpeg?q=70",
+    "head": "Men Regular Fit Solid Button Down Collar Formal Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_m0nmpFN.jpg",
+    "day": "Tommorrow",
+    "date": 24,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 28,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/knqd3m80/shirt/0/s/1/l-hlsh012469-highlander-original-imag2ckdsxfajgde.jpeg?q=70",
+    "head": "Men Slim Fit Printed Cut Away Collar Casual Shirt",
+    "discount_price": "538",
+    "orginal_price": "1,099",
+    "discount": "51% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_P4i0V8E.jpg",
+    "day": "Tuesday",
+    "date": 13,
+    "users": "10",
+    "int_discount_price": 538,
+    "int_orginal_price": 1099,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 29,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/v/g/j/m-bchk-yellow-base-41-original-imag7fbukh8k5ffv-bb.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Spread Collar Casual Shirt",
+    "discount_price": "299",
+    "orginal_price": "1,599",
+    "discount": "81% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_asCXkjR.jpg",
+    "day": "Wednesday",
+    "date": 25,
+    "users": "10",
+    "int_discount_price": 299,
+    "int_orginal_price": 1599,
+    "fashion_model": "BASE 41",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 30,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/4/0/a/5xl-pk19sh09r-surhi-original-imaft953scfuvus8.jpeg?q=70",
+    "head": "Men Slim Fit Checkered Casual Shirt",
+    "discount_price": "299",
+    "orginal_price": "1,999",
+    "discount": "85% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_60DrRJP.jpg",
+    "day": "Thursday",
+    "date": 8,
+    "users": "10",
+    "int_discount_price": 299,
+    "int_orginal_price": 1999,
+    "fashion_model": "Surhi",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 31,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/knhsgi80/shirt/2/v/n/xl-sksh-bb110-xl-ye-3-fubar-original-imag263ywfdmxgxa.jpeg?q=70",
+    "head": "Men Slim Fit Solid Mandarin Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,098",
+    "discount": "63% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407880_lEnsjHgZh970gQ0UYA2dGY29UmXVoorP.jpg",
+    "day": "Saturday",
+    "date": 4,
+    "users": "10",
+    "int_discount_price": 399,
+    "int_orginal_price": 1098,
+    "fashion_model": "FUBAR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 32,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/k/z/v/xl-hlsh014001-highlander-original-imagjscyptxzhrcm.jpeg?q=70",
+    "head": "Men Slim Fit Striped Cut Away Collar Casual Shirt",
+    "discount_price": "643",
+    "orginal_price": "2,249",
+    "discount": "71% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_IoJVQ1u.jpg",
+    "day": "Wednesday",
+    "date": 24,
+    "users": "10",
+    "int_discount_price": 643,
+    "int_orginal_price": 2249,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 33,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/u/j/f/xxl-shirt-01-blue-moonvelly-original-imaghjgpvhze4vas.jpeg?q=70",
+    "head": "Men Slim Fit Solid Button Down Collar Formal Shirt",
+    "discount_price": "359",
+    "orginal_price": "2,099",
+    "discount": "82% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_l8GqXbk.jpg",
+    "day": "Tuesday",
+    "date": 14,
+    "users": "10",
+    "int_discount_price": 359,
+    "int_orginal_price": 2099,
+    "fashion_model": "MOONVELLY",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 34,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/l1pc3gw0/shirt/c/i/t/l-st2-vebnor-original-imagd7b7aeybhxvs.jpeg?q=70",
+    "head": "Men Regular Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "339",
+    "orginal_price": "1,849",
+    "discount": "81% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_sfmnFNS.jpg",
+    "day": "Sunday",
+    "date": 9,
+    "users": "10",
+    "int_discount_price": 339,
+    "int_orginal_price": 1849,
+    "fashion_model": "VeBNoR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 35,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kfoapow0-0/shirt/c/f/d/m-hlsh008838-highlander-original-imafw2ggvyuzf5g6.jpeg?q=70",
+    "head": "Men Slim Fit Solid Tie up Collar Casual Shirt",
+    "discount_price": "499",
+    "orginal_price": "999",
+    "discount": "50% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_AD37l7u.jpg",
+    "day": "Tuesday",
+    "date": 10,
+    "users": "10",
+    "int_discount_price": 499,
+    "int_orginal_price": 999,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 36,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/knqd3m80/shirt/s/r/r/xl-hlsh012595-highlander-original-imag2ckd3fpmvzhh.jpeg?q=70",
+    "head": "Men Slim Fit Printed Cut Away Collar Casual Shirt",
+    "discount_price": "516",
+    "orginal_price": "1,099",
+    "discount": "53% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_cK5TK8J.jpg",
+    "day": "Thursday",
+    "date": 12,
+    "users": "10",
+    "int_discount_price": 516,
+    "int_orginal_price": 1099,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 37,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/o/t/z/xl-kcsh-110-pp-3-fubar-original-imafzzs3jx6nhjep-bb.jpeg?q=70",
+    "head": "Men Slim Fit Solid Mandarin Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,098",
+    "discount": "63% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_s7zjq57.jpg",
+    "day": "Tommorrow",
+    "date": 19,
+    "users": "10",
+    "int_discount_price": 399,
+    "int_orginal_price": 1098,
+    "fashion_model": "FUBAR",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 38,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/kxdl3m80/shirt/o/e/h/l-ts-shirt1084-tanip-original-imag9ugfbemk7mx3.jpeg?q=70",
+    "head": "Men Slim Fit Solid Spread Collar Casual Shirt",
+    "discount_price": "329",
+    "orginal_price": "1,399",
+    "discount": "76% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_TuZPXWb.jpg",
+    "day": "Monday",
+    "date": 10,
+    "users": "10",
+    "int_discount_price": 329,
+    "int_orginal_price": 1399,
+    "fashion_model": "Tanip",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 39,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/o/d/v/l-hm-shirt26-hanumntra-original-imafuqy3q4rzffx7-bb.jpeg?q=70",
+    "head": "Men Regular Fit Printed Spread Collar Casual Shirt",
+    "discount_price": "399",
+    "orginal_price": "1,899",
+    "discount": "78% off",
+    "advertise": false,
+    "rating_img": "pics/1000_F_532407942_Fma76SotoFXJFwxBVqkiL0NEExYdNo0t_4jNNuUN.jpg",
+    "day": "Sunday",
+    "date": 21,
+    "users": "10",
+    "int_discount_price": 399,
+    "int_orginal_price": 1899,
+    "fashion_model": "HANUMNTRA",
+    "type": "shirts"
+  }
+},
+{
+  "model": "app_1.shirts",
+  "pk": 40,
+  "fields": {
+    "image": "https://rukminim1.flixcart.com/image/612/612/xif0q/shirt/z/p/v/l-hlsh013887-highlander-original-imaggkzwggyzquta.jpeg?q=70",
+    "head": "Men Slim Fit Printed Cut Away Collar Casual Shirt",
+    "discount_price": "701",
+    "orginal_price": "1,949",
+    "discount": "64% off",
+    "advertise": true,
+    "rating_img": "pics/1000_F_467973594_OSgimOYGDDiM6UBgv61bKiRH8PzlH0cI_F7ex4tK.jpg",
+    "day": "Wednesday",
+    "date": 8,
+    "users": "10",
+    "int_discount_price": 701,
+    "int_orginal_price": 1949,
+    "fashion_model": "HIGHLANDER",
+    "type": "shirts"
+  }
+}
+]

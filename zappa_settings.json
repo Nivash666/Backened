@@ -1,0 +1,11 @@
+{
+    "dev": {
+        "aws_region": "us-east-1",
+        "django_settings": "Severless.settings",
+        "profile_name": "default",
+        "project_name": "severless",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-ddeh599mn"
+       
+    }
+}
