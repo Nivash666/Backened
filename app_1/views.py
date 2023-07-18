@@ -12,7 +12,6 @@ from rest_framework.permissions import IsAuthenticated
 #from .decorators import cognito_jwt_auth_required
 
 class Hello(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         data = {'mgs': 'hello'}
         return Response(data)
