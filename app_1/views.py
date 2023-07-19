@@ -8,11 +8,12 @@ import random
 from .serializers import ConvertData
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 from .decorators import cognito_jwt_auth_required
-
+from rest_framework.permissions import IsAuthenticated
+from .authentication import CognitoJWTAuthentication
 class Hello(APIView):
-    @cognito_jwt_auth_required   
+    authentication_classes=[CognitoJWTAuthentication]
+    permission_classes=[IsAuthenticated]
     def get(self, request):
         data = {'mgs': 'hello'}
         return Response(data)

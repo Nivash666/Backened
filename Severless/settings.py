@@ -63,11 +63,11 @@ MIDDLEWARE = [
 #     }
 #from rest_framework_simplejwt.authentication import JWTAuthentication
 #
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'rest_framework_simplejwt.authentication.JWTAuthentication',
-#    ],
-#}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'app_1.authentication.CognitoJWTAuthentication',
+    ],
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
