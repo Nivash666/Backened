@@ -15,8 +15,18 @@ class Hello(APIView):
     authentication_classes=[CognitoJWTAuthentication]
     permission_classes=[IsAuthenticated]
     def get(self, request):
-        data = {'mgs': 'hello'}
-        return Response(data)
+          response={
+          'statusCode': 200,
+           'headers':{
+                   'Access-Control-Allow-Headers': 'Content-Type',
+                   'Access-Control-Allow-Origin': '*',
+                   'Access-Control-Allow-Credentials':True,
+                   'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
+        
+             'body': "hello world " 
+             }
+          return Response(response)
 
 #@cognito_jwt_auth_required
 #def list_all_products(request):
