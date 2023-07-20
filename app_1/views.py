@@ -21,7 +21,6 @@ from .authentication import CognitoJWTAuthentication
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def protected_api_view(request):
     # Your protected API logic here
     return JsonResponse({"message": "This is a protected API."})
