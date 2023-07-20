@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-     #"corsheaders",
+     "corsheaders",
      "django_extensions",
     "app_1",
     "zappa",
@@ -50,9 +50,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-     #"corsheaders.middleware.CorsMiddleware",
-     "app_1.middleware.CognitoTokenMiddleware"
+     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+     "app_1.middleware.CognitoTokenMiddleware"
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -70,8 +70,10 @@ MIDDLEWARE = [
 #        'app_1.authentication.CognitoJWTAuthentication',
 #    ],
 #}
-
-CORS_ALLOWED_ORIGINS = ['*']
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 #CORS_ALLOW_ALL_ORIGINS = True
 
 #CORS_ORIGIN_ALLOW_ALL = True
