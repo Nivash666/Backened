@@ -12,20 +12,9 @@ from .decorators import cognito_jwt_auth_required
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
 class Hello(APIView):
-    authentication_classes=[CognitoJWTAuthentication]
-    permission_classes=[IsAuthenticated]
+    @cognito_jwt_auth_required
     def get(self, request):
-          response={
-          'statusCode': 200,
-           'headers':{
-                   'Access-Control-Allow-Headers': 'Content-Type',
-                   'Access-Control-Allow-Origin': '*',
-                   'Access-Control-Allow-Credentials':True,
-                   'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-            },
-        
-             'body': "hello world " 
-             }
+          response={'msg':'hello'}
           return Response(response)
 
 #@cognito_jwt_auth_required
