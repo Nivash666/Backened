@@ -12,7 +12,7 @@ from .decorators import cognito_jwt_auth_required
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
 class Hello(APIView):
-    @cognito_jwt_auth_required
+    
     def get(self, request):
           response={'msg':'hello'}
           return Response(response)
