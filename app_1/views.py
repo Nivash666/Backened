@@ -8,9 +8,10 @@ import random
 from .serializers import ConvertData
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .decorators import cognito_jwt_auth_required
+from .decorators import validate_aws_cognito_token
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
+@validate_aws_cognito_token
 class Hello(APIView):
     def get(self, request):
           response={'msg':'hello'}
