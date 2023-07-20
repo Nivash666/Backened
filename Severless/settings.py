@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "app_1",
     "zappa",
     "rest_framework",
-    "django_cognito_jwt"
+    "django_cognito_jwt",
     'rest_framework_simplejwt',
 ]
 
