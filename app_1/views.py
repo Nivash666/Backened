@@ -11,8 +11,8 @@ from rest_framework.views import APIView
 from .decorators import validate_aws_cognito_token
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
-#@validate_aws_cognito_token
 class Hello(APIView):
+    @validate_aws_cognito_token
     def get(self, request):
           response={'msg':'hello'}
           return Response(response)
