@@ -12,17 +12,17 @@ from .decorators import validate_aws_cognito_token
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
 #@validate_aws_cognito_token
-#class Hello(APIView):
-#    def get(self, request):
-#          response={'msg':'hello'}
-#          return Response(response)
+class Hello(APIView):
+    def get(self, request):
+          response={'msg':'hello'}
+          return Response(response)
 # views.py
 
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-
-def protected_api_view(request):
-    return JsonResponse({"msg": "This is a protected API."})
+#from django.http import JsonResponse
+#from django.contrib.auth.decorators import login_required
+#
+#def protected_api_view(request):
+#    return JsonResponse({"msg": "This is a protected API."})
     
 
 #@cognito_jwt_auth_required
