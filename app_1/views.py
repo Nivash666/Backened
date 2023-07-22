@@ -14,6 +14,7 @@ from rest_framework.generics import ListAPIView
 class MyProtectedView(ListAPIView):
     queryset=Shirts.objects.all()
     serializer_class=ConvertData
+    
     def list(self, request,*args,**kwargs):
         queryset=self.queryset
         serializer=self.serializer_class
