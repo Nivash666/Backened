@@ -16,7 +16,7 @@ class MyProtectedView(APIView):
         serializer=ConvertData(Shirts.objects.all())
         # Your view logic here
         response_data = {'message': serializer.data}
-        return Response(response_data)
+        return Response(serializer.data)
 #print hello world
 
 
