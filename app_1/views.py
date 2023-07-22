@@ -10,9 +10,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .decorators import requires_authentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication
 from .authentication import CognitoJWTAuthentication
-@requires_authentication
 class Hello(APIView):
+    authentication_classes=[SessionAuthentication]
+    permission_classes=[IsAuthenticated]
     def get(self, request):
           response={'msg':'this is protected classs'}
           return Response(response)

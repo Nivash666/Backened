@@ -69,6 +69,14 @@ MIDDLEWARE = [
 #        'app_1.authentication.CognitoJWTAuthentication',
 #    ],
 #}
+AUTHENTICATION_BACKENDS = [
+    'django_cognito_jwt.backends.JSONWebTokenBackend',
+]
+COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
+COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
+COGNITO_AWS_REGION='us-east-1'
+
+
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -79,9 +87,7 @@ CORS_ALLOWED_ORIGINS = [
 
 #CORS_ALLOW_ALL_ORIGINS = False
 
-COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
-COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
-COGNITO_AWS_REGION='us-east-1'
+
 ROOT_URLCONF = "Severless.urls"
 
 TEMPLATES = [
