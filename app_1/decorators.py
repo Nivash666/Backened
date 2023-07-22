@@ -107,7 +107,7 @@ COGNITO_REGION='us-east-1'
 from functools import wraps
 
 def requires_authentication(view_func):
-    @wrapped_view(view_func)
+    @wraps(view_func)
     def wrapped_view(request,*args,**kwargs):
         if not request.user.is_authenticated:
             return JsonResponse({'error':'Authentication Required'},status=401)
