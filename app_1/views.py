@@ -9,13 +9,14 @@ from .serializers import ConvertData
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .decorators import requires_authentication
-  
+from rest_framework.generics import ListAPIView  
 # views.py
-class MyProtectedView(APIView):
-    def get(self, request):
-        serializer=ConvertData(Shirts.objects.all())
-        # Your view logic here
-        response_data = {'message': serializer.data}
+class MyProtectedView(ListAPIView):
+    queryset=Shirts.objects.all()
+    serializer_class=ConvertData
+    def list(self, request,*args,**kwargs):
+        queryset=self.queryset
+        serializer=self.serializer_class
         return Response(serializer.data)
 #print hello world
 
