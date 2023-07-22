@@ -8,13 +8,13 @@ import random
 from .serializers import ConvertData
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .decorators import validate_aws_cognito_token
+from .decorators import requires_authentication
 from rest_framework.permissions import IsAuthenticated
 from .authentication import CognitoJWTAuthentication
+@requires_authentication
 class Hello(APIView):
-    @validate_aws_cognito_token
     def get(self, request):
-          response={'msg':'hello'}
+          response={'msg':'this is protected classs'}
           return Response(response)
 # views.py
 

@@ -79,33 +79,38 @@ from django.http import JsonResponse
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
 COGNITO_REGION='us-east-1'
-def validate_aws_cognito_token(view_func):
-    def _wrapped_view(request, *args, **kwargs):
-        token = request.META.get('HTTP_AUTHORIZATION', '').split(' ')[-1]
+#def validate_aws_cognito_token(view_func):
+#    def _wrapped_view(request, *args, **kwargs):
+#        token = request.META.get('HTTP_AUTHORIZATION', '').split(' ')[-1]
+#
+#        if not token:
+#            return JsonResponse({'error': 'Token not found'}, status=401)
+#
+#        try:
+#            client = boto3.client('cognito-idp', region_name=COGNITO_REGION)
+#            response = client.get_user(AccessToken=token)
+#            # Additional checks if needed (e.g., user roles, attributes)
+#        except client.exceptions.NotAuthorizedException:
+#            return JsonResponse({'error': 'Invalid token'}, status=401)
+#        except client.exceptions.InvalidParameterException:
+#            return JsonResponse({'error': 'Invalid token'}, status=401)
+#        except client.exceptions.UserNotFoundException:
+#            return JsonResponse({'error': 'User not found'}, status=401)
+#        except Exception as e:
+#            return JsonResponse({'error': 'Something went wrong'}, status=500)
+#
+#        # If token is valid, proceed to the view
+#        return view_func(request, *args, **kwargs)
+#
+#    return _wrapped_view
 
-        if not token:
-            return JsonResponse({'error': 'Token not found'}, status=401)
+from functools import wraps
 
-        try:
-            client = boto3.client('cognito-idp', region_name=COGNITO_REGION)
-            response = client.get_user(AccessToken=token)
-            # Additional checks if needed (e.g., user roles, attributes)
-        except client.exceptions.NotAuthorizedException:
-            return JsonResponse({'error': 'Invalid token'}, status=401)
-        except client.exceptions.InvalidParameterException:
-            return JsonResponse({'error': 'Invalid token'}, status=401)
-        except client.exceptions.UserNotFoundException:
-            return JsonResponse({'error': 'User not found'}, status=401)
-        except Exception as e:
-            return JsonResponse({'error': 'Something went wrong'}, status=500)
+def requires_authentication(view_func):
+    @wrapped_view(view_func)
+    def wrapped_view(request,*args,**kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({'error':'Authentication Required'},status=401)
 
-        # If token is valid, proceed to the view
-        return view_func(request, *args, **kwargs)
-
-    return _wrapped_view
-
-
-
-
-
-
+        return view_func(request,*args,**kwargs)
+    return wrapped_view
