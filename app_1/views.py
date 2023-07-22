@@ -13,9 +13,23 @@ from .decorators import requires_authentication
 # views.py
 class MyProtectedView(APIView):
     def get(self, request):
+        serializer=ConvertData(Shirts.objects.all())
         # Your view logic here
-        response_data = {'message': 'This is a protected API endpoint'}
+        response_data = {'message': serializer.data}
         return Response(response_data)
+#print hello world
+
+
+
+
+
+
+
+
+
+
+
+
 
 #from django.http import JsonResponse
 #from django.contrib.auth.decorators import login_required
