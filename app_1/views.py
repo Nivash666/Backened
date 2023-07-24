@@ -19,6 +19,13 @@ class MyProtectedView(ListAPIView):
         queryset=self.get_queryset()
         serializer=self.get_serializer(queryset,many=True)
         return Response(serializer.data)
+#def randon_name():
+#   shop_names= ["chennaisilks", 
+#                "parvathiys", 
+#                "", 
+#                "Fashionsilks"]
+#   return random.choice(shop_names)
+ 
 #print hello world
 
 

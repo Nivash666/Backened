@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-
+import random
  
 class Shirts(models.Model):
     image=models.CharField(max_length=200)
@@ -20,6 +20,7 @@ class Shirts(models.Model):
     fashion_model=models.CharField(max_length=100) 
     shop_name=models.CharField(max_length=100,default="None")
     shop_image=models.CharField(max_length=1000,default="None")     
-    @classmethod
+    
     def all_datas(cls):
          return cls.objects.all()
+    
