@@ -7,6 +7,8 @@ from jwkest.jwk import KEYS
 
 # myapp/cognito/authentication.py
 
+# myapp/cognito/authentication.py
+
 import os
 import time
 import jwt
@@ -55,7 +57,7 @@ class CognitoAuthenticationMixin:
 
             if time.time() > claims["exp"]:
                 raise Exception("Token is expired")
-            if claims["aud"] != settings.COGNITO_CONFIG["7g2af98fpbih3tgb28btf3vnkq"]:
+            if claims["aud"] != settings.COGNITO_CONFIG["app_client_id"]:
                 raise Exception("Token was not issued for this audience")
 
             return claims
@@ -78,13 +80,10 @@ class CognitoAuthenticationMixin:
 
 
 
-
-
-
 def fetch_jwks_from_cognito():
     cognito_jwks_url = "https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json"
-    region = "your_cognito_region"
-    user_pool_id = "your_cognito_user_pool_id"
+    region = "us-east-1"
+    user_pool_id = "us-east-1_LsUhND2zs"
 
     url = cognito_jwks_url.format(region=region, userPoolId=user_pool_id)
     response = requests.get(url)
@@ -96,4 +95,4 @@ def fetch_jwks_from_cognito():
         return keys
     else:
         raise Exception("Failed to fetch JWKS from Cognito")
-keys = fetch_jwks_from_cognito()
+keys = fetch_jwks_from_cognito() 
