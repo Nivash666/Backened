@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =os.environ.get("SECRET_KEY")
+SECRET_KEY ='8nfusimkq3md'#os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =os.environ.get("DEBUG","False").lower()=="true"
+DEBUG =False#os.environ.get("DEBUG","False").lower()=="true"
 
-ALLOWED_HOSTS =os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS =['*']#os.environ.get("ALLOWED_HOSTS").split(" ")
 #['po4nwvbvwh.execute-api.us-east-1.amazonaws.com','127.0.0.1', 'localhost']
 
 
@@ -57,6 +57,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+AUTHENTICATION_BACKENDS = [
+    'app_1.cognito.authentication.CognitoAuthentication',
+]
+COGNITO_CONFIG = {
+    'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
+    'region':'us-east-1',
+
+}
+#REST_FRAMEWORK = {
+#    "DEFAULT_AUTHENTICATION_CLASSES": [
+#        "cognito.authentication.CognitoAuthentication",
+#    ],
+#}
 #REST_FRAMEWORK = {
 #        'DEFAULT_AUTHENTICATION_CLASSES': [
 #            'django_cognito_jwt.JSONWebTokenAuthentication',
@@ -85,14 +98,6 @@ MIDDLEWARE = [
 #        'app_1.authentication.CustomJWTAuthentication',
 #    ],
 #}
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-}
 
 #AUTHENTICATION_BACKENDS = [
 #    'django_cognito_jwt.backends.JSONWebTokenBackend',

@@ -45,3 +45,4 @@ class Cartshop(models.Model):
     Cartproductimage=models.CharField(max_length=100000)
     Cartproductprice=models.IntegerField()
     shop=models.ForeignKey(Shop,on_delete=models.CASCADE,related_name='cartshopchildren')
+
