@@ -69,14 +69,23 @@ COGNITO_CONFIG = {
 }
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-JWT_AUTH = {
-    'JWT_SECRET_KEY': '74hbdhuba5423csz9is8hdhgxhaki',  # Replace with a secure random key
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': timedelta(days=1),  # Token expiration time
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#    ),
+#}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_IN_SECONDS': 60 * 60 * 24 * 30,
+    'SLIDING_TOKEN_REFRESH_RENEWAL': timedelta(days=5),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
