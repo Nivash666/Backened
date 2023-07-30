@@ -57,13 +57,24 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-AUTHENTICATION_BACKENDS = [
-    'app_1.cognito.authentication.CognitoAuthentication',
-]
+#AUTHENTICATION_BACKENDS = [
+#    'app_1.cognito.authentication.CognitoAuthentication',
+#]
 COGNITO_CONFIG = {
     'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
     'region':'us-east-1',
 
+}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': [
+#        'django_cognito_jwt.authentication.JSONWebTokenAuthentication',
+#    ],
+#}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 #REST_FRAMEWORK = {
 #    "DEFAULT_AUTHENTICATION_CLASSES": [

@@ -12,15 +12,17 @@ from .decorators import requires_authentication
 from rest_framework.generics import ListAPIView  
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 # views.py
 class MyProtectedView(ListAPIView):
+    permission_classes=[IsAuthenticated]
     queryset=Shop.objects.all()
     serializer_class=Convertshopmodel#ConvertData
 
     def list(self, request,*args,**kwargs):
         queryset=self.get_queryset()
-        print(request.headers)
+        print(request.user)
         print(self.request.user)
         serializer=self.get_serializer(queryset,many=True)
         return Response(serializer.data)    
