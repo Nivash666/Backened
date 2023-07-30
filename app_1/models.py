@@ -23,4 +23,25 @@ class Shirts(models.Model):
     
     def all_datas(cls):
          return cls.objects.all()
-    
+class Cartmodel(models.Model):
+    shop_image=models.CharField(max_length=100000)
+    shop_name=models.CharField(max_length=100)
+    product_image=models.CharField(max_length=10000)
+    product_name=models.CharField(max_length=100)
+    product_price=models.IntegerField()     
+
+
+class Shop(models.Model):
+    shopname=models.CharField(max_length=50)
+    shopimage=models.CharField(max_length=100000)
+class Shopproducts(models.Model):
+    product_image=models.CharField(max_length=10000)
+    product_name=models.CharField(max_length=100)
+    product_price=models.IntegerField()
+    shop=models.ForeignKey(Shop,on_delete=models.CASCADE,related_name='children')
+
+class Cartshop(models.Model):
+    Cartproductname=models.CharField(max_length=300)
+    Cartproductimage=models.CharField(max_length=100000)
+    Cartproductprice=models.IntegerField()
+    shop=models.ForeignKey(Shop,on_delete=models.CASCADE,related_name='cartshopchildren')
