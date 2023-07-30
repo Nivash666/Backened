@@ -67,14 +67,17 @@ class CognitoAuthenticationMixin:
     def authenticate(self, request):
         token = self.get_auth_token(request)
         try:
+            print(token)
             claims = self.get_jwt_claims(token)
             if len(claims) > 0:
                 user = User.objects.get(email=claims["email"])
+                print(user.username)
                 return user
             raise Exception("User not found")
         except User.DoesNotExist:
             raise Exception("User not found")
         except Exception as e:
+            print("Authentication failed:", str(e))
             raise Exception("Invalid auth token")
 
 
