@@ -22,7 +22,7 @@ class MyProtectedView(ListAPIView):
 
     def list(self, request,*args,**kwargs):
         queryset=self.get_queryset()
-        print(request.user)
+        print(request.META)
         print(self.request.user)
         serializer=self.get_serializer(queryset,many=True)
         return Response(serializer.data)    
