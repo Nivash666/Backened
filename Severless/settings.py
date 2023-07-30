@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "zappa",
     "rest_framework",
     "django_cognito_jwt",
+     "rest_framework_jwt"
     'rest_framework_simplejwt',
 ]
 
@@ -65,17 +67,28 @@ COGNITO_CONFIG = {
     'region':'us-east-1',
 
 }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+JWT_AUTH = {
+    'JWT_SECRET_KEY': '74hbdhuba5423csz9is8hdhgxhaki',  # Replace with a secure random key
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),  # Token expiration time
+}
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
 #        'django_cognito_jwt.authentication.JSONWebTokenAuthentication',
 #    ],
 #}
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': [
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    ],
+#}
 #REST_FRAMEWORK = {
 #    "DEFAULT_AUTHENTICATION_CLASSES": [
 #        "cognito.authentication.CognitoAuthentication",
