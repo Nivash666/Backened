@@ -74,11 +74,11 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'app_1.authentication.CustomJWTAuthentication',
-    ],
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': [
+#        'app_1.authentication.CustomJWTAuthentication',
+#    ],
+#}
 
 
 AUTHENTICATION_BACKENDS = [

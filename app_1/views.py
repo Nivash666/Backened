@@ -10,11 +10,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .decorators import requires_authentication
 from rest_framework.generics import ListAPIView  
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 # views.py
 class MyProtectedView(ListAPIView):
-    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAuthenticated]
     queryset=Shop.objects.all()
     serializer_class=Convertshopmodel#ConvertData
 
