@@ -71,6 +71,11 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+JWT_SECRET_KEY = '8ndg35v1sus2bc6'
+
+JWT_ACCESS_TOKEN_LIFETIME = 3600  # 1 hour
+JWT_REFRESH_TOKEN_LIFETIME = 86400  # 1 day
+JWT_ALGORITHM = 'HS256'
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': (
 #        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
