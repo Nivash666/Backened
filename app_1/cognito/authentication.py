@@ -98,3 +98,42 @@
 #    else:
 #        raise Exception("Failed to fetch JWKS from Cognito")
 #keys = fetch_jwks_from_cognito() 
+
+
+# myapp/cognito/authentication.py
+
+from rest_framework.authentication import BaseAuthentication
+from django_cognito_jwt.authentication import JSONWebTokenAuthentication
+
+class CognitoAuthenticationMixin:
+    def get_auth_token(self, request):
+        # Implement how to get the JWT token from the request
+        # For example, extract it from the Authorization header
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+        if auth_header.startswith('Bearer '):
+            return auth_header[len('Bearer '):]
+        return None
+
+    def get_jwt_claims(self, token):
+        # Implement the code to validate the JWT token and extract claims
+        # You can use the JSONWebTokenAuthentication from django_cognito_jwt
+        authentication = JSONWebTokenAuthentication()
+        user, validated_token = authentication.authenticate_credentials(token)
+        if user:
+            return validated_token.payload
+        return {}
+
+    def authenticate(self, request):
+        token = self.get_auth_token(request)
+        try:
+            claims = self.get_jwt_claims(token)
+            if claims:
+                # Replace User with your custom User model if applicable
+                user = User.objects.get(email=claims.get('email'))
+                return user
+        except User.DoesNotExist:
+            pass
+
+        return None
+
+
