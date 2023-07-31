@@ -58,87 +58,26 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-#AUTHENTICATION_BACKENDS = [
-#    'app_1.cognito.authentication.CognitoAuthentication',
-#]
-COGNITO_CONFIG = {
-    'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
-    'region':'us-east-1',
 
-}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-JWT_SECRET_KEY = '8ndg35v1sus2bc6'
-
-JWT_ACCESS_TOKEN_LIFETIME = 3600  # 1 hour
-JWT_REFRESH_TOKEN_LIFETIME = 86400  # 1 day
-JWT_ALGORITHM = 'HS256'
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': (
-#        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#    ),
-#}
-
-from datetime import timedelta
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=30),
-    'SLIDING_TOKEN_REFRESH_LIFETIME_IN_SECONDS': 60 * 60 * 24 * 30,
-    'SLIDING_TOKEN_REFRESH_RENEWAL': timedelta(days=5),
-    'AUTH_HEADER_TYPES': ('Bearer',),
+AUTHENTICATION_BACKENDS = [
+    'app_1.authentication.CognitoAuthenticationBackend',
+]
+COGNITO_CONFIG = {
+    'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
+    'region': 'us-east-1',
+    'user_pool_id': 'us-east-1_LsUhND2zs',
 }
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'django_cognito_jwt.authentication.JSONWebTokenAuthentication',
-#    ],
-#}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
 
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'rest_framework_simplejwt.authentication.JWTAuthentication',
-#    ],
-#}
-#REST_FRAMEWORK = {
-#    "DEFAULT_AUTHENTICATION_CLASSES": [
-#        "cognito.authentication.CognitoAuthentication",
-#    ],
-#}
-#REST_FRAMEWORK = {
-#        'DEFAULT_AUTHENTICATION_CLASSES': [
-#            'django_cognito_jwt.JSONWebTokenAuthentication',
-#        ],
-#     }
-#from rest_framework_simplejwt.authentication import JWTAuthentication
-#
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'app_1.authentication.CognitoJWTAuthentication',
-#    ],
-#}
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'rest_framework_simplejwt.authentication.JWTAuthentication',
-#    ],
-#}
-#REST_FRAMEWORK = {
-#    "DEFAULT_AUTHENTICATION_CLASSES": [
-#        "rest_framework.authentication.SessionAuthentication",
-#        "rest_framework.authentication.TokenAuthentication",
-#    ],
-#}
-#REST_FRAMEWORK = {
-#    'DEFAULT_AUTHENTICATION_CLASSES': [
-#        'app_1.authentication.CustomJWTAuthentication',
-#    ],
-#}
-
-#AUTHENTICATION_BACKENDS = [
-#    'django_cognito_jwt.backends.JSONWebTokenBackend',
-#]
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
 COGNITO_AWS_REGION='us-east-1'
@@ -148,13 +87,6 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
-#CORS_ALLOW_ALL_ORIGINS = True
-
-#CORS_ORIGIN_ALLOW_ALL = True
-
-#CORS_ALLOW_ALL_ORIGINS = False
-
-
 ROOT_URLCONF = "Severless.urls"
 
 TEMPLATES = [
@@ -186,19 +118,6 @@ DATABASES = {
     }
 }
 
-#database_url=os.environ.get("DATABASE_URL")
-#DATABASES["default"]=dj_database_url.parse(database_url)
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.mysql",
-#        "NAME": "Railway",
-#        "USER": "root",
-#        "PASSWORD": "bLBFspFztpTZi5fRoFyF",
-#        "HOST": "containers-us-west-181.railway.app",
-#        "PORT": "6976",
-#        
-#    }
-#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

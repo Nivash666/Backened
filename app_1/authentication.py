@@ -1,3 +1,57 @@
+# myapp/authentication.py
+
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from .cognito import get_jwt_claims
+from django.contrib.auth.models import User
+
+class CognitoAuthenticationBackend(JWTAuthentication):
+    def authenticate(self, request):
+        authenticated_user = super().authenticate(request)
+
+        if authenticated_user:
+            token = request.auth
+            try:
+                claims = get_jwt_claims(token)
+                if len(claims) > 0:
+                    user = User.objects.get(email=claims["email"])
+                    return user
+            except User.DoesNotExist:
+                pass
+            except Exception:
+                pass
+
+        return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #from rest_framework.authentication import BaseAuthentication
 #from rest_framework.exceptions import AuthenticationFailed
 #from .utils import validate_cognito_token
