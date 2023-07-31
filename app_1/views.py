@@ -16,6 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 # views.py
 class MyProtectedView(ListAPIView):
+    permission_classes=[IsAuthenticated]
     queryset=Shop.objects.all()
     serializer_class=Convertshopmodel#ConvertData
 
