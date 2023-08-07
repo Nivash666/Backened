@@ -89,6 +89,16 @@ REST_FRAMEWORK = {
     ],
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Set the access token lifetime
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # Set the sliding token refresh lifetime
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # Set the sliding token refresh lifetime
+    'ALGORITHM': 'HS256',  # Specify the token signing algorithm (default: HS256)
+    'SIGNING_KEY': SECRET_KEY,  # Use your Django's SECRET_KEY as the signing key
+    'AUTH_HEADER_TYPES': ('Bearer',),  # Define accepted auth header types
+    'USER_ID_FIELD': 'sub',  # Set the user identifier field (default: 'id')
+    'USER_ID_CLAIM': 'sub',  # Set the user identifier claim (default: 'sub')
+}
 
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
