@@ -15,6 +15,14 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 # views.py
+# views.py
+
+class MyProtectedView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        return Response({'message': 'Hello, {}!'.format(request.user.username)})
+
 class MyProtectedView(ListAPIView):
     queryset=Shop.objects.all()
     permission_classes=[IsAuthenticated]
