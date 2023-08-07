@@ -21,7 +21,8 @@ class MyProtectedView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        return Response({'message': 'Hello, {}!'.format(request.user.username)})
+        print(request.user.username)
+        return Response({'message': 'Hello'})
 
 class MyProtectedView(ListAPIView):
     queryset=Shop.objects.all()
