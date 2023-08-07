@@ -22,8 +22,7 @@ class MyProtectedView(ListAPIView):
 
     def list(self, request,*args,**kwargs):
         queryset=self.get_queryset()
-        print(request.user)
-        print(self.request.user)
+        print(request.user.username)
         serializer=self.get_serializer(queryset,many=True)
         return Response(serializer.data)    
 class retiveShop(APIView):

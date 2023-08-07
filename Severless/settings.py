@@ -59,24 +59,36 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'django_cognito_jwt.authentication.CognitoAuthentication',
+#    ),
+#}
+#AUTHENTICATION_BACKENDS = [
+#    'app_1.authentication.CognitoAuthenticationBackend',
+#]
+#COGNITO_CONFIG = {
+#    'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
+#    'region': 'us-east-1',
+#    'user_pool_id': 'us-east-1_LsUhND2zs',
+#}
+#SIMPLE_JWT = {
+#    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+#    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+#    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+#}
+# settings.py
+
+# Add authentication and permission classes
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
-AUTHENTICATION_BACKENDS = [
-    'app_1.authentication.CognitoAuthenticationBackend',
-]
-COGNITO_CONFIG = {
-    'app_client_id': '7g2af98fpbih3tgb28btf3vnkq',
-    'region': 'us-east-1',
-    'user_pool_id': 'us-east-1_LsUhND2zs',
-}
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-}
+
 
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'

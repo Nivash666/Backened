@@ -3,6 +3,19 @@
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .cognito import get_jwt_claims
 from django.contrib.auth.models import User
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from django_cognito_jwt.authentication import CognitoAuthenticationMixin, NoAuthToken
+from .cognito import fetch_jwks_from_cognito, get_jwt_claims
+from django.contrib.auth.models import User
+
+class CognitoAuthentication(CognitoAuthenticationMixin, JWTAuthentication):
+    def get_auth_token(self, request):
+        auth_header = request.META.get("HTTP_AUTHORIZATION", "")
+        if auth_header.startswith("Bearer "):
+            return auth_header.split(" ")[1]
+        raise NoAuthToken()
+
+# ... (rest of the code remains the same as before)
 
 class CognitoAuthenticationBackend(JWTAuthentication):
     def authenticate(self, request):
