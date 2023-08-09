@@ -18,7 +18,6 @@ from .mixin import AWSCognitoTokenMixin
 # views.py
 
 class MyProtectedView(AWSCognitoTokenMixin, APIView):
-    @AWSCognitoTokenMixin.aws_cognito_token_required
     def get(self, request, *args, **kwargs):
         user_data = self.validate_cognito_token(request.auth)
 
@@ -31,17 +30,18 @@ class MyProtectedView(AWSCognitoTokenMixin, APIView):
             return Response({'username': username, 'email': email})
         else:
             return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
+my_protected_view = AWSCognitoTokenMixin().aws_cognito_token_required(MyProtectedView.as_view())
 
-class MyProtectedView(ListAPIView):
-    queryset=Shop.objects.all()
-    permission_classes=[IsAuthenticated]
-    serializer_class=Convertshopmodel#ConvertData
-
-    def list(self, request,*args,**kwargs):
-        queryset=self.get_queryset()
-        print(request.user.username)
-        serializer=self.get_serializer(queryset,many=True)
-        return Response(serializer.data)    
+#class MyProtectedView(ListAPIView):
+#    queryset=Shop.objects.all()
+#    permission_classes=[IsAuthenticated]
+#    serializer_class=Convertshopmodel#ConvertData
+#
+#    def list(self, request,*args,**kwargs):
+#        queryset=self.get_queryset()
+#        print(request.user.username)
+#        serializer=self.get_serializer(queryset,many=True)
+#        return Response(serializer.data)    
 class retiveShop(APIView):
     def get(self,request,pk):
           try:
