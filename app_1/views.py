@@ -8,13 +8,11 @@ import random
 from .serializers import ConvertData,Cart,Convertshopmodel,Convertshopproductmodel,cartpage1,Covertcart
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .decorators import requires_authentication
 from rest_framework.generics import ListAPIView  
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from .authentication import AWSCognitoAuthentication
 from django.conf import settings
 from .mixin import AWSCognitoTokenMixin
 # views.py

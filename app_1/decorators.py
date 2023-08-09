@@ -114,3 +114,37 @@ COGNITO_REGION='us-east-1'
 #
 #        return view_func(request,*args,**kwargs)
 #    return wrapped_view
+
+
+
+
+from functools import wraps
+from rest_framework.response import Response
+from rest_framework import status
+
+def aws_cognito_token_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+
+        if not auth_header:
+            return Response({'message': 'Authentication credentials were not provided'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        parts = auth_header.split(' ')
+
+        if len(parts) != 2 or parts[0].lower() != 'bearer':
+            return Response({'message': 'Invalid authorization header format'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        token = parts[1]
+        user_data = validate_cognito_token(token)
+
+        if not user_data:
+            return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        return view_func(request, *args, **kwargs)
+
+    return _wrapped_view
+
+
+
+
