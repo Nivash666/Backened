@@ -21,10 +21,31 @@ from rest_framework.response import Response
 from rest_framework.decorators import APIView
 from rest_framework import status
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import jwt
+from django.conf import settings
+
 class MyProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-         print(request.META)
-         return Response('hello world')
+        token = request.META.get('HTTP_AUTHORIZATION', '').split(' ')[1]
+        try:
+            decoded_token = jwt.decode(
+                token,
+                verify=False  # We're not verifying the signature here
+            )
+
+            # Extract user attributes from the decoded token
+            user_id = decoded_token.get('sub')  # User's unique identifier from token
+            username = decoded_token.get('username')  # Example: 'username' attribute
+            # You can access other attributes similarly
+
+            return Response({'username': username, 'user_id': user_id})
+        except jwt.ExpiredSignatureError:
+            return Response({'message': 'Token has expired'}, status=status.HTTP_401_UNAUTHORIZED)
+        except jwt.DecodeError:
+            return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
 
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
