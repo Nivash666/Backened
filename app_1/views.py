@@ -16,21 +16,31 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.conf import settings
 from .mixin import AWSCognitoTokenMixin
 # views.py
+import jwt
+from rest_framework.response import Response
+from rest_framework.decorators import APIView
+from rest_framework import status
 
-class MyProtectedView(AWSCognitoTokenMixin, APIView):
+class MyProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-        user_data = self.validate_cognito_token(request.auth)
+        token = request.META.get('HTTP_AUTHORIZATION', '').split(' ')[1]
 
-        if user_data:
-            # Here, user_data is a dictionary containing user attributes from Cognito
-            username = user_data.get('sub')  # 'sub' typically represents the user's unique identifier
-            email = user_data.get('email')   # Example: 'email' attribute
+        try:
+            decoded_token = jwt.decode(
+                token,
+                verify=False  # We're not verifying the signature here
+            )
+            
+            user_id = decoded_token.get('sub')  # User's unique identifier from token
+            username = decoded_token.get('username')  # Example: 'username' attribute
             # You can access other attributes similarly
 
-            return Response({'username': username, 'email': email})
-        else:
+            return Response({'username': username, 'user_id': user_id})
+        except jwt.ExpiredSignatureError:
+            return Response({'message': 'Token has expired'}, status=status.HTTP_401_UNAUTHORIZED)
+        except jwt.DecodeError:
             return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
-my_protected_view = AWSCognitoTokenMixin().aws_cognito_token_required(MyProtectedView.as_view())
+
 
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
