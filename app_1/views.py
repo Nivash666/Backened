@@ -23,33 +23,8 @@ from rest_framework import status
 
 class MyProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-
-        if not auth_header:
-            return Response({'message': 'Authentication credentials were not provided'}, status=status.HTTP_401_UNAUTHORIZED)
-
-        parts = auth_header.split(' ')
-
-        if len(parts) != 2 or parts[0].lower() != 'bearer':
-            return Response({'message': 'Invalid authorization header format'}, status=status.HTTP_401_UNAUTHORIZED)
-
-        token = parts[1]
-
-        try:
-            decoded_token = jwt.decode(
-                token,
-                verify=False  # We're not verifying the signature here
-            )
-            
-            user_id = decoded_token.get('sub')  # User's unique identifier from token
-            username = decoded_token.get('username')  # Example: 'username' attribute
-            # You can access other attributes similarly
-
-            return Response({'username': username, 'user_id': user_id})
-        except jwt.ExpiredSignatureError:
-            return Response({'message': 'Token has expired'}, status=status.HTTP_401_UNAUTHORIZED)
-        except jwt.DecodeError:
-            return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
+         print(request.META)
+         return Response('hello world')
 
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
