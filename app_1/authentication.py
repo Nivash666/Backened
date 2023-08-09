@@ -79,8 +79,8 @@ class AWSCognitoAuthentication(BaseAuthentication):
             decoded_token = jwt.decode(
                 token,
                 algorithms=jwks_data['keys'][0]['alg'],
-                audience='Your Audience',  # Replace with your audience
-                issuer='Your Issuer',  # Replace with your issuer
+                audience='7g2af98fpbih3tgb28btf3vnkq',  # Replace with your audience
+                issuer='https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs',  # Replace with your issuer
                 options={'verify_signature': False}
             )
 

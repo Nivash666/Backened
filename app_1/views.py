@@ -21,7 +21,6 @@ from .authentication import AWSCognitoAuthentication
 class MyProtectedView(APIView):
     authentication_classes=[AWSCognitoAuthentication]
     permission_classes = [IsAuthenticated]
-
     def get(self, request, *args, **kwargs):
         user=request.user
         return Response({'message': f'Hello, {user.username}!'})
