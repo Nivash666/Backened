@@ -78,11 +78,6 @@ MIDDLEWARE = [
 #    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 #}
 # settings.py
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'app_1.authentication.AWSCognitoAuthentication',  # Path to your custom authentication class
-    ),
-}
 # Add authentication and permission classes
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
