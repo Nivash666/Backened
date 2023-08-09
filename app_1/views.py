@@ -30,7 +30,7 @@ from django.conf import settings
 class MyProtectedView(APIView):
     def get(self, request, *args, **kwargs):
          auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-         print(auth_header)
+         print('auth_headers: '+ auth_header + '--end--')
          return Response("msg hello")
         
 #class MyProtectedView(ListAPIView):
