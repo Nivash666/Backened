@@ -1,61 +1,115 @@
 # myapp/authentication.py
 
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from .cognito import get_jwt_claims
-from django.contrib.auth.models import User
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from django_cognito_jwt.authentication import CognitoAuthenticationMixin, NoAuthToken
-from .cognito import fetch_jwks_from_cognito, get_jwt_claims
-from django.contrib.auth.models import User
+#from rest_framework_simplejwt.authentication import JWTAuthentication
+#from .cognito import get_jwt_claims
+#from django.contrib.auth.models import User
+#from rest_framework_simplejwt.authentication import JWTAuthentication
+#from django_cognito_jwt.authentication import CognitoAuthenticationMixin, NoAuthToken
+#from .cognito import fetch_jwks_from_cognito, get_jwt_claims
+#from django.contrib.auth.models import User
+#
+#class CognitoAuthentication(CognitoAuthenticationMixin, JWTAuthentication):
+#    def get_auth_token(self, request):
+#        auth_header = request.META.get("HTTP_AUTHORIZATION", "")
+#        if auth_header.startswith("Bearer "):
+#            return auth_header.split(" ")[1]
+#        raise NoAuthToken()
+#
+## ... (rest of the code remains the same as before)
+#
+#class CognitoAuthenticationBackend(JWTAuthentication):
+#    def authenticate(self, request):
+#        authenticated_user = super().authenticate(request)
+#
+#        if authenticated_user:
+#            token = request.auth
+#            try:
+#                claims = get_jwt_claims(token)
+#                if len(claims) > 0:
+#                    user = User.objects.get(email=claims["email"])
+#                    return user
+#            except User.DoesNotExist:
+#                pass
+#            except Exception:
+#                pass
+#
+#        return None
+#
+#
 
-class CognitoAuthentication(CognitoAuthenticationMixin, JWTAuthentication):
-    def get_auth_token(self, request):
-        auth_header = request.META.get("HTTP_AUTHORIZATION", "")
-        if auth_header.startswith("Bearer "):
-            return auth_header.split(" ")[1]
-        raise NoAuthToken()
 
-# ... (rest of the code remains the same as before)
 
-class CognitoAuthenticationBackend(JWTAuthentication):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# custom_auth.py
+
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+import jwt
+import requests
+from django.contrib.auth import get_user_model
+          
+class AWSCognitoAuthentication(BaseAuthentication):
     def authenticate(self, request):
-        authenticated_user = super().authenticate(request)
+        token = self.get_token_from_header(request)
+        
+        if token is None:
+            return None
 
-        if authenticated_user:
-            token = request.auth
+        jwks_url = 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs/.well-known/jwks.json'
+        jwks_response = requests.get(jwks_url)
+        jwks_data = jwks_response.json()
+
+        try:
+            decoded_token = jwt.decode(
+                token,
+                algorithms=jwks_data['keys'][0]['alg'],
+                audience='Your Audience',  # Replace with your audience
+                issuer='Your Issuer',  # Replace with your issuer
+                options={'verify_signature': False}
+            )
+
+            user_id = decoded_token.get('sub')
+            username = decoded_token.get('username')
+
+            User = get_user_model()
             try:
-                claims = get_jwt_claims(token)
-                if len(claims) > 0:
-                    user = User.objects.get(email=claims["email"])
-                    return user
+                user = User.objects.get(username=username)
+                if user.id != user_id:
+                    raise AuthenticationFailed('Token does not match user ID')
             except User.DoesNotExist:
-                pass
-            except Exception:
-                pass
+                raise AuthenticationFailed('User not found')
 
+            return (user, None)
+            
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Token has expired')
+        except jwt.DecodeError:
+            raise AuthenticationFailed('Invalid token')
+
+    def get_token_from_header(self, request):
+        header = request.META.get('HTTP_AUTHORIZATION', '')
+        parts = header.split(' ')
+
+        if len(parts) == 2 and parts[0].lower() == 'bearer':
+            return parts[1]
+        
         return None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

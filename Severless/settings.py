@@ -78,16 +78,20 @@ MIDDLEWARE = [
 #    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 #}
 # settings.py
-
-# Add authentication and permission classes
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'app_1.authentication.AWSCognitoAuthentication',  # Path to your custom authentication class
+    ),
 }
+# Add authentication and permission classes
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': [
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    ],
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.IsAuthenticated',
+#    ],
+#}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Set the access token lifetime
