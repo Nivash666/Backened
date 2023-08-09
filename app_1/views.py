@@ -15,15 +15,24 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .authentication import AWSCognitoAuthentication
-# views.py
+from django.conf import settings
+from .mixin import AWSCognitoTokenMixin
 # views.py
 
-class MyProtectedView(APIView):
-    authentication_classes=[AWSCognitoAuthentication]
-    permission_classes = [IsAuthenticated]
+class MyProtectedView(AWSCognitoTokenMixin, APIView):
+    @AWSCognitoTokenMixin.aws_cognito_token_required
     def get(self, request, *args, **kwargs):
-        user=request.user
-        return Response({'message': f'Hello, {user.username}!'})
+        user_data = self.validate_cognito_token(request.auth)
+
+        if user_data:
+            # Here, user_data is a dictionary containing user attributes from Cognito
+            username = user_data.get('sub')  # 'sub' typically represents the user's unique identifier
+            email = user_data.get('email')   # Example: 'email' attribute
+            # You can access other attributes similarly
+
+            return Response({'username': username, 'email': email})
+        else:
+            return Response({'message': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class MyProtectedView(ListAPIView):
     queryset=Shop.objects.all()
