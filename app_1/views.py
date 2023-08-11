@@ -39,12 +39,31 @@ def protected_view(request):
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 
-class ProtectedView(LoginRequiredMixin,APIView):
+class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-         auth_header = request.user.username
-         print('username :' + auth_header)
-         return JsonResponse({"message":f"authenticated username is {auth_header}"})
+        auth_header = request.META.get('HTTP_AUTHORIZATION', None)
+
+        if not auth_header:
+            return JsonResponse({"message": "Authorization header missing"}, status=401)
+
+        try:
+            token = auth_header.split(' ')[1]
+            decoded_token = jwt.decode(token, verify=False)  # Verify signature manually
+            username = decoded_token.get('username', None)
+            
+            if not username:
+                return JsonResponse({"message": "Invalid token"}, status=401)
+            
+            # You can now use the extracted username for further validation or processing
+            
+            return JsonResponse({"message": f"authenticated username is {username}"})
         
+        except jwt.ExpiredSignatureError:
+            return JsonResponse({"message": "Token has expired"}, status=401)
+        except jwt.JWTError:
+            return JsonResponse({"message": "Invalid token"}, status=401)
+
+
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
 #    permission_classes=[IsAuthenticated]

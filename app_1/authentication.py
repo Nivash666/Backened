@@ -4,12 +4,10 @@ from django.http.request import HttpRequest
 import jwt
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
-
-
 class CognitoJWTAuthneticationBackened(ModelBackend):
     def authenticate(self,request,token=None):
         if token is None:
-            return None
+            return "it does have any token "
         try:
           secret='7g2af98fpbih3tgb28btf3vnkq'
           decoded_token=jwt.decode(token,secret,algorithms=['HS256'])
