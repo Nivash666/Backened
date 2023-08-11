@@ -58,9 +58,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-AUTHENTICATION_BACKENDS = [
-    'app_1.authentication.CognitoJWTAuthneticationBackened',
-]   
 
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
