@@ -36,12 +36,13 @@ def protected_view(request):
     print(auth_header)
 
     return Response({'message': 'Authenticated'})
-
-class MyProtectedView(APIView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
+class MyProtectedView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
-         auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-         print('auth_headers: '+ auth_header + '--end--')
-         return Response("msg hello")
+         auth_header = request.user
+         print('username :' + auth_header)
+         return JsonResponse({"message":f"authenticated username is {auth_header}"})
         
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()

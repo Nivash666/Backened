@@ -1,3 +1,57 @@
+from typing import Any, Optional
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.http.request import HttpRequest
+import jwt
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.models import User
+
+
+class CognitoJWTAuthneticationBackened(ModelBackend):
+    def authenticate(self,request,token=None):
+        if token is None:
+            return None
+        try:
+          secret='7g2af98fpbih3tgb28btf3vnkq'
+          decoded_token=jwt.decode(token,secret,algorithms=['HS256'])
+          cognito_id=decoded_token.get('sub')
+
+          if cognito_id:
+              user=User(username=cognito_id)
+              return user
+        except jwt.ExpiredSignatureError:
+            return "token Expired"
+        except jwt.DecodeError:
+            return "Decode error"    
+       
+    def get_user(self, user_id):
+        try:
+         return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+           return "User does not exist error"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # myapp/authentication.py
 
 #from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -58,60 +112,62 @@
 
 # custom_auth.py
 
-from rest_framework.authentication import BaseAuthentication
-from rest_framework.exceptions import AuthenticationFailed
-import jwt
-import requests
-from django.contrib.auth import get_user_model
-          
-class AWSCognitoAuthentication(BaseAuthentication):
-    def authenticate(self, request):
-        token = self.get_token_from_header(request)
-        
-        if token is None:
-            return None
+#from rest_framework.authentication import BaseAuthentication
+#from rest_framework.exceptions import AuthenticationFailed
+#import jwt
+#import requests
+#from django.contrib.auth import get_user_model
+#          
+#class AWSCognitoAuthentication(BaseAuthentication):
+#    def authenticate(self, request):
+#        token = self.get_token_from_header(request)
+#        
+#        if token is None:
+#            return None
+#
+#        jwks_url = 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs/.well-known/jwks.json'
+#        jwks_response = requests.get(jwks_url)
+#        jwks_data = jwks_response.json()
+#
+#        try:
+#            decoded_token = jwt.decode(
+#                token,
+#                algorithms=jwks_data['keys'][0]['alg'],
+#                audience='7g2af98fpbih3tgb28btf3vnkq',  # Replace with your audience
+#                issuer='https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs',  # Replace with your issuer
+#                options={'verify_signature': False}
+#            )
+#
+#            user_id = decoded_token.get('sub')
+#            username = decoded_token.get('username')
+#
+#            User = get_user_model()
+#            try:
+#                user = User.objects.get(username=username)
+#                if user.id != user_id:
+#                    raise AuthenticationFailed('Token does not match user ID')
+#            except User.DoesNotExist:
+#                raise AuthenticationFailed('User not found')
+#
+#            return (user, None)
+#            
+#        except jwt.ExpiredSignatureError:
+#            raise AuthenticationFailed('Token has expired')
+#        except jwt.DecodeError:
+#            raise AuthenticationFailed('Invalid token')
+#
+#    def get_token_from_header(self, request):
+#        header = request.META.get('HTTP_AUTHORIZATION', '')
+#        parts = header.split(' ')
+#
+#        if len(parts) == 2 and parts[0].lower() == 'bearer':
+#            return parts[1]
+#        
+#        return None
+#
 
-        jwks_url = 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs/.well-known/jwks.json'
-        jwks_response = requests.get(jwks_url)
-        jwks_data = jwks_response.json()
 
-        try:
-            decoded_token = jwt.decode(
-                token,
-                algorithms=jwks_data['keys'][0]['alg'],
-                audience='7g2af98fpbih3tgb28btf3vnkq',  # Replace with your audience
-                issuer='https://cognito-idp.us-east-1.amazonaws.com/us-east-1_LsUhND2zs',  # Replace with your issuer
-                options={'verify_signature': False}
-            )
-
-            user_id = decoded_token.get('sub')
-            username = decoded_token.get('username')
-
-            User = get_user_model()
-            try:
-                user = User.objects.get(username=username)
-                if user.id != user_id:
-                    raise AuthenticationFailed('Token does not match user ID')
-            except User.DoesNotExist:
-                raise AuthenticationFailed('User not found')
-
-            return (user, None)
-            
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Token has expired')
-        except jwt.DecodeError:
-            raise AuthenticationFailed('Invalid token')
-
-    def get_token_from_header(self, request):
-        header = request.META.get('HTTP_AUTHORIZATION', '')
-        parts = header.split(' ')
-
-        if len(parts) == 2 and parts[0].lower() == 'bearer':
-            return parts[1]
-        
-        return None
-
-
+#
 
 
 
