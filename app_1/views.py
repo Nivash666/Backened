@@ -38,7 +38,8 @@ def protected_view(request):
     return Response({'message': 'Authenticated'})
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-class MyProtectedView(LoginRequiredMixin,View):
+
+class ProtectedView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
          auth_header = request.user
          print('username :' + auth_header)
