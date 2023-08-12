@@ -52,7 +52,7 @@ def protected_view(request):
 
     try:
         token = auth_header.split(' ')[1]  # Extract the token part from "Bearer <token>"
-        decoded_token = jwt.decode(token, verify=False)  # Verify the token manually (optional)
+        decoded_token = jwt.decode(token, algorithms=['RS256'], options={"verify_signature": True}, verify=True, key=None)
         username = decoded_token.get('username')  # Extract the username from the decoded token
         
         return JsonResponse({"message": f"Authenticated user: {username}"})
