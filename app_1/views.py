@@ -90,7 +90,7 @@ def protected_view(request):
             token,
             jwks_data,
             algorithms=['RS256'],
-            audience='YourCognitoAppClientId',
+            audience='7g2af98fpbih3tgb28btf3vnkq',
             issuer=f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}',
         )
         
