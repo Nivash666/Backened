@@ -36,13 +36,6 @@ def protected_view(request):
     print(auth_header)
 
     return Response({'message': 'Authenticated'})
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views import View
-from django.contrib.auth.decorators import login_required
-class ProtectedView(APIView):
-    def get(self, request, *args, **kwargs):
-         print(request.META)
-         return Response("thanks for choosing this api")
 
 #def protected_view(request):
 #    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
