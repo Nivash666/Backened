@@ -64,6 +64,7 @@ from .authentication import CognitoTokenAuthentication
 @authentication_classes([CognitoTokenAuthentication])
 class Protectedview(APIView):
      def get(self,request):
+          print(request)
           username=request.user
           return Response({'message':f'Authenticated user is {username}'})
 #class MyProtectedView(ListAPIView):
