@@ -42,7 +42,7 @@ from django.views import View
 class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
         auth_header = request.META.get('HTTP_AUTHORIZATION', None) or  request.META.get('Authorization')
-        print(request.META)
+        print(auth_header)  
         if not auth_header:
             return JsonResponse({"message": "Authorization header missing"}, status=401)
 
