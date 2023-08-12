@@ -41,7 +41,7 @@ from django.views import View
 
 class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-        for key, value in request.META.items():
+        for key, value in request.META:
          print(f"{key}: {value}")
          return Response("thanks for choosing this api ")
 
