@@ -44,11 +44,22 @@ class ProtectedView(APIView):
          print(request.META)
          return Response("thanks for choosing this api")
 
-@login_required
 def protected_view(request):
-    # User is authenticated via Cognito JWT tokens
-    username = request.user.username
-    return JsonResponse({"message": f"Authenticated user: {username}"})
+    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
+
+    if not auth_header:
+        return JsonResponse({"message": "Authorization header missing"}, status=401)
+
+    try:
+        token = auth_header.split(' ')[1]  # Extract the token part from "Bearer <token>"
+        decoded_token = jwt.decode(token, verify=False)  # Verify the token manually (optional)
+        username = decoded_token.get('username')  # Extract the username from the decoded token
+        
+        return JsonResponse({"message": f"Authenticated user: {username}"})
+    except jwt.ExpiredSignatureError:
+        return JsonResponse({"message": "Token has expired"}, status=401)
+    except jwt.DecodeError:
+        return JsonResponse({"message": "Invalid token"}, status=401)
 
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
