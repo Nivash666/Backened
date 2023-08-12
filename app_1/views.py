@@ -38,7 +38,6 @@ def protected_view(request):
     return Response({'message': 'Authenticated'})
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from django_cognito.authentication import JSONWebTokenAuthentication
 from django.contrib.auth.decorators import login_required
 class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
