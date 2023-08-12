@@ -44,23 +44,34 @@ class ProtectedView(APIView):
          print(request.META)
          return Response("thanks for choosing this api")
 
+#def protected_view(request):
+#    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
+#
+#    if not auth_header:
+#        return JsonResponse({"message": "Authorization header missing"}, status=401)
+#
+#    try:
+#        token = auth_header.split(' ')[1]  # Extract the token part from "Bearer <token>"
+#        decoded_token = jwt.decode(token, algorithms=['RS256'], options={"verify_signature": True}, verify=True, key=None)
+#        username = decoded_token.get('username')  # Extract the username from the decoded token
+#        
+#        return JsonResponse({"message": f"Authenticated user: {username}"})
+#    except jwt.ExpiredSignatureError:
+#        return JsonResponse({"message": "Token has expired"}, status=401)
+#    except jwt.DecodeError:
+#        return JsonResponse({"message": "Invalid token"}, status=401)
+from .utils import verify_cognito_token
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def protected_view(request):
-    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
-
-    if not auth_header:
-        return JsonResponse({"message": "Authorization header missing"}, status=401)
-
-    try:
-        token = auth_header.split(' ')[1]  # Extract the token part from "Bearer <token>"
-        decoded_token = jwt.decode(token, algorithms=['RS256'], options={"verify_signature": True}, verify=True, key=None)
-        username = decoded_token.get('username')  # Extract the username from the decoded token
-        
-        return JsonResponse({"message": f"Authenticated user: {username}"})
-    except jwt.ExpiredSignatureError:
-        return JsonResponse({"message": "Token has expired"}, status=401)
-    except jwt.DecodeError:
-        return JsonResponse({"message": "Invalid token"}, status=401)
-
+    token = request.auth.token
+    payload = verify_cognito_token(token)
+    
+    if payload:
+        username = payload.get('username')
+        return Response({"message": f"Authenticated user: {username}"})
+    else:
+        return Response({"message": "Authentication failed"}, status=401)
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
 #    permission_classes=[IsAuthenticated]
