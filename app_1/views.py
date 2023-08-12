@@ -41,9 +41,8 @@ from django.views import View
 
 class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-        for key, value in request.META:
-         print(f"{key}: {value}")
-         return Response("thanks for choosing this api ")
+         print(request.META)
+         return Response("thanks for choosing this api")
 
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
