@@ -58,6 +58,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
