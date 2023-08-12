@@ -41,7 +41,7 @@ from django.views import View
 
 class ProtectedView(APIView):
     def get(self, request, *args, **kwargs):
-        auth_header = request.META.get('HTTP_AUTHORIZATION', None) or  request.META.get('Authorization')
+        auth_header = request.META.get('HTTP_AUTHORIZATION') 
         print(auth_header)
         print('after headers')  
         if not auth_header:
