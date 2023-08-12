@@ -61,17 +61,46 @@ class ProtectedView(APIView):
 #    except jwt.DecodeError:
 #        return JsonResponse({"message": "Invalid token"}, status=401)
 from .utils import verify_cognito_token
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
+import jwt
+from django.http import JsonResponse
+import requests
 def protected_view(request):
-    token = request.auth.token
-    payload = verify_cognito_token(token)
+    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
     
-    if payload:
-        username = payload.get('username')
-        return Response({"message": f"Authenticated user: {username}"})
-    else:
-        return Response({"message": "Authentication failed"}, status=401)
+    if not auth_header:
+        return JsonResponse({"message": "Authorization header missing"}, status=401)
+    
+    try:
+        # Extract the token from the header
+        token = auth_header.split(' ')[1]
+        
+        # Replace this with your actual Cognito User Pool ID
+        user_pool_id = 'us-east-1_LsUhND2zs'
+        
+        # Replace this with your actual AWS Region
+        aws_region = 'us-east-1'
+        
+        # Fetch the JWKS from Cognito
+        jwks_url = f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}/.well-known/jwks.json'
+        jwks_response = requests.get(jwks_url)
+        jwks_data = jwks_response.json()
+        
+        # Decode and verify the token
+        decoded_token = jwt.decode(
+            token,
+            jwks_data,
+            algorithms=['RS256'],
+            audience='YourCognitoAppClientId',
+            issuer=f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}',
+        )
+        
+        # Extract user information from the decoded token
+        username = decoded_token['cognito:username']
+        
+        return JsonResponse({"message": f"Authenticated user: {username}"})
+    except Exception as e:
+        return JsonResponse({"message": "Invalid token"}, status=401)
+
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
 #    permission_classes=[IsAuthenticated]
