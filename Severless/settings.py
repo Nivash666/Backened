@@ -116,11 +116,14 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'sub',  # Set the user identifier field (default: 'id')
     'USER_ID_CLAIM': 'sub',  # Set the user identifier claim (default: 'sub')
 }
-
+AUTHENTICATION_BACKENDS = [
+    'django_cognito_jwt.backends.CognitoJWTAuthentication',
+]
 COGNITO_USER_POOL_ID = 'us-east-1_LsUhND2zs'
 COGNITO_APP_CLIENT_ID = '7g2af98fpbih3tgb28btf3vnkq'
 COGNITO_AWS_REGION='us-east-1'
-
+COGNITO_JWT_DOMAIN = 'https://us-east-1_LsUhND2zs.auth.us-east-1.amazoncognito.com'
+COGNITO_JWT_KEY_SET_URL = f'https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json'
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
