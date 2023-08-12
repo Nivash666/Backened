@@ -1,31 +1,58 @@
-from typing import Any, Optional
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.http.request import HttpRequest
+import json
 import jwt
-from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth.models import User
-class CognitoJWTAuthneticationBackened(ModelBackend):
-    def authenticate(self,request,token=None):
-        if token is None:
-            return "it does have any token "
-        try:
-          secret='7g2af98fpbih3tgb28btf3vnkq'
-          decoded_token=jwt.decode(token,secret,algorithms=['HS256'])
-          cognito_id=decoded_token.get('sub')
+import requests
+from rest_framework import authentication
+from rest_framework.exceptions import AuthenticationFailed
 
-          if cognito_id:
-              user=User(username=cognito_id)
-              return user
-        except jwt.ExpiredSignatureError:
-            return "token Expired"
-        except jwt.DecodeError:
-            return "Decode error"    
-       
-    def get_user(self, user_id):
+class CognitoTokenAuthentication(authentication.BaseAuthentication):
+    def authenticate(self, request):
+        auth_header = request.META.get('HTTP_AUTHORIZATION', None)
+
+        if not auth_header:
+            return None
+
         try:
-         return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-           return "User does not exist error"
+            # Extract the token from the header
+            token = auth_header.split(' ')[1]
+
+            # Replace this with your Cognito User Pool ID
+            user_pool_id = 'us-east-1_LsUhND2zs'
+
+            # Replace this with your AWS Region
+            aws_region = 'us-east-1'
+
+            # Fetch the JWKS from Cognito
+            jwks_url = f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}/.well-known/jwks.json'
+            jwks_response = requests.get(jwks_url)
+            jwks_data = jwks_response.json()
+
+            # Find the appropriate key for token verification
+            keys = jwks_data.get('keys', [])
+            for key in keys:
+                if key['alg'] == 'RS256':
+                    rsa_key = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(key))
+                    break
+            else:
+                raise AuthenticationFailed("No valid key found")
+
+            # Verify and decode the token
+            decoded_token = jwt.decode(
+                token,
+                rsa_key,
+                algorithms=['RS256'],
+                audience='7g2af98fpbih3tgb28btf3vnkq',
+                issuer=f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}',
+            )
+
+            # Check if the user is authenticated via Cognito
+            if 'cognito:username' in decoded_token:
+                return (decoded_token['cognito:username'], None)
+            else:
+                raise AuthenticationFailed("Unauthorized")
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed("Token has expired")
+        except jwt.DecodeError:
+            raise AuthenticationFailed("Invalid token")
 
 
 

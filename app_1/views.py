@@ -66,57 +66,13 @@ from django.http import JsonResponse
 import requests
 import jwt
 from django.http import JsonResponse
-
-def protected_view(request):
-    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
-
-    if not auth_header:
-        return JsonResponse({"message": "Authorization header missing"}, status=401)
-
-    try:
-        # Extract the token from the header
-        token = auth_header.split(' ')[1]
-
-        # Replace this with your Cognito User Pool ID
-        user_pool_id = 'us-east-1_LsUhND2zs'
-
-        # Replace this with your AWS Region
-        aws_region = 'us-east-1'
-
-        # Fetch the JWKS from Cognito
-        jwks_url = f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}/.well-known/jwks.json'
-        jwks_response = requests.get(jwks_url)
-        jwks_data = jwks_response.json()
-
-        # Find the appropriate key for token verification
-        keys = jwks_data.get('keys', [])
-        for key in keys:
-            if key['alg'] == 'RS256':
-                rsa_key = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(key))
-                break
-        else:
-            return JsonResponse({"message": "No valid key found"}, status=401)
-
-        # Verify and decode the token
-        decoded_token = jwt.decode(
-            token,
-            rsa_key,
-            algorithms=['RS256'],
-            audience='7g2af98fpbih3tgb28btf3vnkq',
-            issuer=f'https://cognito-idp.{aws_region}.amazonaws.com/{user_pool_id}',
-        )
-
-        # Check if the user is authenticated via Cognito
-        if 'cognito:username' in decoded_token:
-            username = decoded_token['cognito:username']
-            return JsonResponse({"message": f"Authenticated user: {username}"})
-        else:
-            return JsonResponse({"message": "Unauthorized"}, status=401)
-    except jwt.ExpiredSignatureError:
-        return JsonResponse({"message": "Token has expired"}, status=401)
-    except jwt.DecodeError:
-        return JsonResponse({"message": "Invalid token"}, status=401)
-
+from rest_framework.decorators import authentication_classes
+from .authentication import CognitoTokenAuthentication
+@authentication_classes([CognitoTokenAuthentication])
+class Protectedview(APIView):
+     def get(self,request):
+          username=request.user
+          return Response({'message':f'Authenticated user is {username}'})
 #class MyProtectedView(ListAPIView):
 #    queryset=Shop.objects.all()
 #    permission_classes=[IsAuthenticated]

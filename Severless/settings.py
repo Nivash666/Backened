@@ -72,7 +72,11 @@ CORS_ALLOW_HEADERS = [
 ]
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'app_1.authentication.CognitoTokenAuthentication',
+    ],
+}
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
 #        'rest_framework_simplejwt.authentication.JWTAuthentication',
