@@ -56,6 +56,8 @@ class MyProtectedView(ListAPIView):
         print(request.user.username)
         serializer=self.get_serializer(queryset,many=True)
         return Response(serializer.data)    
+
+@authentication_classes([CognitoTokenAuthentication])
 class retiveShop(APIView):
     def get(self,request,pk):
           try:
@@ -66,7 +68,8 @@ class retiveShop(APIView):
           except Shop.DoesNotExist:
                return Response({'error':'shop not found'})            
 from django.db.models import Count
-from .models import Shop,Shopproducts        
+from .models import Shop,Shopproducts
+@authentication_classes([CognitoTokenAuthentication])
 class CartView(APIView):
     def get(self,request):
         shop_datas=Shirts.objects.values_list('shop_name','shop_image').distinct()
@@ -76,13 +79,6 @@ class CartView(APIView):
         cartonlyshop=datas.values_list('shopname','shopimage').distinct()
         cart1=datas.values('shopname','shopimage').distinct()
         serializer=Convertshopmodel(datas,many=True)
-       #obj,created=Shop.objects.get_or_create(shop=data)
-        #for i in values:
-        #    shop_nam=i['shop_name']
-        #    shop_nam=i['shop_name']
-        #    cart_items=list(Cartmodel.objects.filter(shop_name=shop_nam))
-        #    li.extend(cart_items)
-    
         return Response(serializer.data)
     
     
@@ -101,17 +97,7 @@ class CartView(APIView):
          cart.save()
          print("successfully created")
          return Response('success')
-    #    serializer = Cart(data=request.data)
-    #    
-    #    if serializer.is_valid():
-    #        serializer.save()
-    #        print("successfully created")
-    #        return Response({'msg': 'successfully created'})
-    #    else:
-    #       print("yess it error")
-    #       print(serializer.errors)
-    #       return Response(serializer.errors)
-    #    
+@authentication_classes([CognitoTokenAuthentication])
 class RetriveCartShop(APIView):
      def get(self,request,pk):
           print(request.user)
@@ -122,14 +108,6 @@ class RetriveCartShop(APIView):
           return Response(serializer.data)
 
 
-#def randon_name():
-#   shop_names= ["chennaisilks", 
-#                "parvathiys", 
-#                "", 
-#                "Fashionsilks"]
-#   return random.choice(shop_names)
- 
-#print hello world
 
 
 
