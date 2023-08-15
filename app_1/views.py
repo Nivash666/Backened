@@ -37,28 +37,7 @@ def protected_view(request):
 
     return Response({'message': 'Authenticated'})
 
-#def protected_view(request):
-#    auth_header = request.META.get('HTTP_AUTHORIZATION', None)
-#
-#    if not auth_header:
-#        return JsonResponse({"message": "Authorization header missing"}, status=401)
-#
-#    try:
-#        token = auth_header.split(' ')[1]  # Extract the token part from "Bearer <token>"
-#        decoded_token = jwt.decode(token, algorithms=['RS256'], options={"verify_signature": True}, verify=True, key=None)
-#        username = decoded_token.get('username')  # Extract the username from the decoded token
-#        
-#        return JsonResponse({"message": f"Authenticated user: {username}"})
-#    except jwt.ExpiredSignatureError:
-#        return JsonResponse({"message": "Token has expired"}, status=401)
-#    except jwt.DecodeError:
-#        return JsonResponse({"message": "Invalid token"}, status=401)
-from .utils import verify_cognito_token
 import jwt
-from django.http import JsonResponse
-import requests
-import jwt
-from django.http import JsonResponse
 from rest_framework.decorators import authentication_classes
 from .authentication import CognitoTokenAuthentication
 @authentication_classes([CognitoTokenAuthentication])
@@ -67,16 +46,17 @@ class Protectedview(APIView):
           print(request)
           username=request.user
           return Response({'message':f'Authenticated user is {username}'})
-#class MyProtectedView(ListAPIView):
-#    queryset=Shop.objects.all()
-#    permission_classes=[IsAuthenticated]
-#    serializer_class=Convertshopmodel#ConvertData
-#
-#    def list(self, request,*args,**kwargs):
-#        queryset=self.get_queryset()
-#        print(request.user.username)
-#        serializer=self.get_serializer(queryset,many=True)
-#        return Response(serializer.data)    
+@authentication_classes([CognitoTokenAuthentication])
+class MyProtectedView(ListAPIView):
+    queryset=Shop.objects.all()
+    permission_classes=[IsAuthenticated]
+    serializer_class=Convertshopmodel#ConvertData
+
+    def list(self, request,*args,**kwargs):
+        queryset=self.get_queryset()
+        print(request.user.username)
+        serializer=self.get_serializer(queryset,many=True)
+        return Response(serializer.data)    
 class retiveShop(APIView):
     def get(self,request,pk):
           try:
@@ -109,12 +89,13 @@ class CartView(APIView):
     
     def post(self, request):
          data=request.data
+         user=request.user
          product_name=request.data['product_name']
          product_image=request.data['product_image']
          product_price=request.data['product_price']
          shopdatas=Shop.objects.get(id=request.data['shop'])
          
-         cart=Cartshop.objects.create(Cartproductname=product_name,
+         cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
                                   Cartproductimage=product_image,
                                   Cartproductprice=product_price,
                                   shop=shopdatas)
