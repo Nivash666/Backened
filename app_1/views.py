@@ -46,6 +46,8 @@ class Protectedview(APIView):
           print(request)
           username=request.user
           return Response({'message':f'Authenticated user is {username}'})
+
+
 @authentication_classes([CognitoTokenAuthentication])
 class MyProtectedView(ListAPIView):
     queryset=Shop.objects.all()
