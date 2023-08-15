@@ -49,7 +49,6 @@ class Protectedview(APIView):
 @authentication_classes([CognitoTokenAuthentication])
 class MyProtectedView(ListAPIView):
     queryset=Shop.objects.all()
-    permission_classes=[IsAuthenticated]
     serializer_class=Convertshopmodel#ConvertData
 
     def list(self, request,*args,**kwargs):
