@@ -61,8 +61,9 @@ class MyProtectedView(ListAPIView):
 
 @authentication_classes([CognitoTokenAuthentication])
 class retiveShop(APIView):
-    def get(self,request,pk):
+    def get(self,request):
           try:
+               pk=request.GET.get('shop_id')
                shop_data=Shop.objects.get(shopname=pk)
                related_datas=shop_data.children.all()
                serializer=Convertshopproductmodel(related_datas,many=True)
