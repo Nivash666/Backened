@@ -79,7 +79,7 @@ class CartView(APIView):
     def get(self,request):
         shop_datas=Shirts.objects.values_list('shop_name','shop_image').distinct()
         values=Cartmodel.objects.values('shop_name').annotate(count=Count('shop_name'))
-        datas=Shop.objects.prefetch_related('cartshopchildren').filter(cartshopchildren__isnull=False).filter(username=request.user).distinct()
+        datas=Shop.objects.prefetch_related('cartshopchildren').filter(cartshopchildren__isnull=False).distinct()
 
         alldatas=Shop.objects.prefetch_related('cartshopchildren')
         cartonlyshop=datas.values_list('shopname','shopimage').distinct()
