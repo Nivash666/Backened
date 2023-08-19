@@ -106,6 +106,7 @@ class CartView(APIView):
                 Cartproductprice=product_price,
                 shop=shopdatas
             )
+            cart.save()
             print("Cartshop object created successfully.")
          except Exception as e:
             print("An error occurred:", str(e))
