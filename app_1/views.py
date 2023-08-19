@@ -94,7 +94,7 @@ class CartView(APIView):
          product_image=request.data['product_image']
          product_price=request.data['product_price']
          shopdatas=Shop.objects.get(id=request.data['shop'])
-         print(shopdatas)
+         print("User name is : "+ user)
          print(f"productname : {product_name} and product_image : {product_image}")
          
          #cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
