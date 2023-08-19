@@ -79,7 +79,8 @@ class CartView(APIView):
     def get(self,request):
         shop_datas=Shirts.objects.values_list('shop_name','shop_image').distinct()
         values=Cartmodel.objects.values('shop_name').annotate(count=Count('shop_name'))
-        datas=Shop.objects.prefetch_related('cartshopchildren').filter(cartshopchildren__isnull=False).distinct()
+        datas=Shop.objects.prefetch_related('cartshopchildren').filter(cartshopchildren__isnull=False).filter(username=request.user).distinct()
+
         alldatas=Shop.objects.prefetch_related('cartshopchildren')
         cartonlyshop=datas.values_list('shopname','shopimage').distinct()
         cart1=datas.values('shopname','shopimage').distinct()
@@ -97,11 +98,11 @@ class CartView(APIView):
          print("User name is : "+ user)
          print(f"productname : {product_name} and product_image : {product_image}")
          
-         #cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
-         #                         Cartproductimage=product_image,
-         #                         Cartproductprice=product_price,
-         #                         shop=shopdatas)
-         #cart.save()
+         cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
+                                  Cartproductimage=product_image,
+                                  Cartproductprice=product_price,
+                                  shop=shopdatas)
+         cart.save()
          print("successfully created")
          return Response('success')
 @authentication_classes([CognitoTokenAuthentication])
