@@ -98,12 +98,17 @@ class CartView(APIView):
          shopdatas=Shop.objects.get(id=request.data['shop'])
          print("User name is : "+ user)
          print(f"productname : {product_name} and product_image : {product_image}")
-         
-         cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
-                                  Cartproductimage=product_image,
-                                  Cartproductprice=product_price,
-                                  shop=shopdatas)
-         cart.save()
+         try:
+            cart = Cartshop.objects.create(
+                username=user,
+                Cartproductname=product_name,
+                Cartproductimage=product_image,
+                Cartproductprice=product_price,
+                shop=shopdatas
+            )
+            print("Cartshop object created successfully.")
+         except Exception as e:
+            print("An error occurred:", str(e))
          print("successfully created")
          return Response('success')
 @authentication_classes([CognitoTokenAuthentication])
