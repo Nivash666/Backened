@@ -77,13 +77,13 @@ from .models import Shop,Shopproducts
 @authentication_classes([CognitoTokenAuthentication])
 class CartView(APIView):
     def get(self,request):
-        shop_datas=Shirts.objects.values_list('shop_name','shop_image').distinct()
-        values=Cartmodel.objects.values('shop_name').annotate(count=Count('shop_name'))
+        #shop_datas=Shirts.objects.values_list('shop_name','shop_image').distinct()
+        #values=Cartmodel.objects.values('shop_name').annotate(count=Count('shop_name'))
         datas=Shop.objects.prefetch_related('cartshopchildren').filter(cartshopchildren__isnull=False).distinct()
-
-        alldatas=Shop.objects.prefetch_related('cartshopchildren')
-        cartonlyshop=datas.values_list('shopname','shopimage').distinct()
-        cart1=datas.values('shopname','shopimage').distinct()
+        user_values=datas.filter(username=request.user)
+        #alldatas=Shop.objects.prefetch_related('cartshopchildren')
+        #cartonlyshop=datas.values_list('shopname','shopimage').distinct()
+        #cart1=datas.values('shopname','shopimage').distinct()
         serializer=Convertshopmodel(datas,many=True)
         return Response(serializer.data)
     
