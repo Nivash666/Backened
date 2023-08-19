@@ -102,12 +102,12 @@ class CartView(APIView):
          print(f"productname : {product_name} and product_image : {product_image}")
          try:
             with transaction.atomic():
-                cart = Cartshop.objects.create(
+                cart = Cartshop(
                 username=user,
                 Cartproductname=product_name,
                 Cartproductimage=product_image,
                 Cartproductprice=product_price,
-                shop=shopdatas
+                shop=shopdatas,
                  )
                 cart.save()
                 print("Cartshop object created successfully.")
