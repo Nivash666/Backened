@@ -74,6 +74,8 @@ class retiveShop(APIView):
                return Response({'error':'shop not found'})            
 from django.db.models import Count
 from .models import Shop,Shopproducts
+from django.db import transaction
+
 @authentication_classes([CognitoTokenAuthentication])
 class CartView(APIView):
     def get(self,request):
@@ -99,19 +101,20 @@ class CartView(APIView):
          print("User name is : "+ user)
          print(f"productname : {product_name} and product_image : {product_image}")
          try:
-            cart = Cartshop.objects.create(
+            with transaction.atomic():
+                cart = Cartshop.objects.create(
                 username=user,
                 Cartproductname=product_name,
                 Cartproductimage=product_image,
                 Cartproductprice=product_price,
                 shop=shopdatas
-            )
-            cart.save()
-            print("Cartshop object created successfully.")
+                 )
+                cart.save()
+                print("Cartshop object created successfully.")
+                return Response('success')
+
          except Exception as e:
             print("An error occurred:", str(e))
-         print("successfully created")
-         return Response('success')
 @authentication_classes([CognitoTokenAuthentication])
 class RetriveCartShop(APIView):
      def get(self,request,pk):
