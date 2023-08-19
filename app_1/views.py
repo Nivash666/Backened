@@ -65,6 +65,7 @@ class retiveShop(APIView):
           try:
                pk=request.GET.get('id')
                print("Id : "+pk)
+               print(request.user)
                shop_data=Shop.objects.get(shopname=pk)
                related_datas=shop_data.children.all()
                serializer=Convertshopproductmodel(related_datas,many=True)
@@ -93,12 +94,14 @@ class CartView(APIView):
          product_image=request.data['product_image']
          product_price=request.data['product_price']
          shopdatas=Shop.objects.get(id=request.data['shop'])
+         print("Shopdatas : "+ shopdatas)
+         print(f"productname : {product_name} and product_image : {product_image}")
          
-         cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
-                                  Cartproductimage=product_image,
-                                  Cartproductprice=product_price,
-                                  shop=shopdatas)
-         cart.save()
+         #cart=Cartshop.objects.create(username=user,Cartproductname=product_name,
+         #                         Cartproductimage=product_image,
+         #                         Cartproductprice=product_price,
+         #                         shop=shopdatas)
+         #cart.save()
          print("successfully created")
          return Response('success')
 @authentication_classes([CognitoTokenAuthentication])
