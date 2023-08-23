@@ -47,3 +47,9 @@ class Cartshop(models.Model):
     Cartproductprice=models.IntegerField()
     shop=models.ForeignKey(Shop,on_delete=models.CASCADE,related_name='cartshopchildren')
 
+class Cart(models.Model):
+    user=models.CharField(max_length=100)
+    productname=models.CharField(max_length=5000)
+    productimage=models.CharField(max_length=100000)
+    shop=models.ForeignKey(Shop,on_delete=models.CASCADE,related_name="cartproducts")
+       
