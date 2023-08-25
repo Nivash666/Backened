@@ -100,13 +100,14 @@ class CartView(APIView):
          shopdatas=Shop.objects.get(id=request.data['shop'])
          print("User name is : "+ user)
          print(f"productname : {product_name} and product_image : {product_image}")
-        # cart = Cart(
-        # user=user,
-        # productname=product_name,
-        # productimage=product_image,
-        # shop=shopdatas,
-        #  )
-        # cart.save()
+         cart = Cart(
+         user=user,
+         productname=product_name,
+         productimage=product_image,
+         shop=shopdatas,
+          )
+         
+         cart.save()
          print("Cartshop object created successfully.")
          return Response('success')
 
